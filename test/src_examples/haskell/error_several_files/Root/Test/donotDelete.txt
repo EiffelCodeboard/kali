@@ -1,0 +1,9 @@
+import Test.Hspec
+import qualified Test1SpecWE
+import qualified Test2SpecWE
+main :: IO ()
+main = hspec spec
+spec :: Spec
+spec = do
+describe "Test1"	Test1SpecWE.spec
+describe "Test2"	Test2SpecWE.spec

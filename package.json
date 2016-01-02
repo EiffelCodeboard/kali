@@ -1,0 +1,53 @@
+{
+  "name": "codeboard_kali",
+  "version": "0.1.0",
+  "description": "Web service for compiling, running and unit-testing programs. Support for Haskell-HSpec, Java-JUnit, Python-UnitTest. Part of the codeboard.io project.",
+  "contributors": [
+    {
+      "name": "H.-Christian Estler",
+      "email": "christian@codeboard.io"
+    },
+    {
+      "name": "Martin Nordio",
+      "email": "martin@codeboard.io"
+    }
+  ],
+  "scripts": {
+    "start": "node ./server/server.js",
+    "deploy": "NODE_ENV=production ./server/sever.js",
+    "test": "NODE_ENV=test mocha ./test/*",
+    "testProduction": "NODE_ENV=production mocha ./test/*",
+    "testSetup": "NODE_ENV=test mocha ./test/testSetup.js",
+    "testProductionSetup": "NODE_ENV=production mocha ./test/testSetup.js",
+    "testHaskell": "NODE_ENV=test mocha ./test/testHaskell.js",
+    "testProductionHaskell": "NODE_ENV=production mocha ./test/testHaskell.js",
+    "testJava": "NODE_ENV=test mocha ./test/testJava.js",
+    "testProductionJava": "NODE_ENV=production mocha ./test/testJava.js",
+    "testPython": "NODE_ENV=test mocha ./test/testPython.js",
+    "testProductionPython": "NODE_ENV=production mocha ./test/testPython.js",
+    "testCoverage": "NODE_ENV=test ./node_modules/.bin/istanbul cover node_modules/.bin/_mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/codeboardio/kali.git"
+  },
+  "dependencies": {
+    "express": "4.13.3",
+    "body-parser": "1.14.1",
+    "ncp": "2.0.0",
+    "mkdirp": "0.5.1",
+    "rimraf": "2.4.4",
+    "bluebird": "2.10.2",
+    "lodash": "3.9.3"
+  },
+  "devDependencies": {
+    "mocha": "2.2.5",
+    "should": "7.0.1",
+    "supertest": "1.0.1",
+    "istanbul": "0.4.1"
+  },
+  "engines": {
+    "node": ">= 0.12.x"
+  },
+  "license": "MIT"
+}

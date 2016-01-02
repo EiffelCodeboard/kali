@@ -1,0 +1,6 @@
+{
+  "MainFileForCompilation": "Application.java",
+  "MainClassForRunning": "Application",
+  "DirectoryForClassFiles": "./Root/bin",
+  "ClassPath": ":/usr/share/java/*"
+}

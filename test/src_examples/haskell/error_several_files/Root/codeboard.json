@@ -1,0 +1,4 @@
+{
+  "MainFileForCompilation": "Main.hs",
+  "GHCArgumentMainIs": "Root.Src.Main.main"
+}

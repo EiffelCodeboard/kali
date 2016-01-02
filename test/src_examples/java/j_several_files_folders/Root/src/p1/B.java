@@ -1,0 +1,1 @@
+package p1; public class B { public B() {C c = new C(); System.out.println("Hello B"); } public int one(){  return 1; }}
