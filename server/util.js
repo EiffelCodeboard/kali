@@ -127,14 +127,10 @@ exports.executeCommandWithPath = function (command, currentPath, timeout, callBa
   // console.log('Current path to run ' + currentPath);
   // TODO: remove the time here. We do timeouts via the bash scripts.
   child = exec(command, {cwd: currentPath, timeout: timeout * 1000}, function (error, stdout, stderr) {
-    if (error !== null) {
-      //console.log('Execution error: ' + error+' error signal'+error);
-      //console.log('stderr is: '+stderr);
-      if (error != null && error.signal == 'SIGTERM') {
-        stderr = 'Waring: your command exceeded the time limit of ' + timeout + 'seconds.' +
-          '\nCompilations and executions may not exceed their time limits.' +
-          '\nTherefore, Codeboard terminated your program.'
-      }
+    if (error !== null && error.signal === 'SIGTERM') {
+      stderr = 'Waring: your command exceeded the time limit of ' + timeout + 'seconds.' +
+        '\nCompilations and executions may not exceed their time limits.' +
+        '\nTherefore, Codeboard terminated your program.'
     }
     callBack(stdout, stderr);
   });

@@ -58,6 +58,13 @@ function parseJavaCompilerOutput(output) {
   result.errors = [];
   result.warnings = [];
 
+  // Note: what we should do here is check the exit-code of the Java compiler
+  // But since we run a script to control timeouts etc. for the container, we don't have
+  // access to the exit-code of the compiler.
+  // What we do instead, we just check if there's something printed on stderr; because
+  // if the compiler generates an error, it would be printed to stderr; if compilation goes
+  // through, nothing will send to stderr
+
   // the compiler output is empty if no error occurred; when using the command for docker the "echo" will have put a \n
   if (output === '' || output === '\n') {
     output = 'Compilation successful';
@@ -173,7 +180,14 @@ exports.testProject = function (id, req, res) {
     util.executeCommandWithPath(command, dstPath, config.compileTimeout, function (stdout, stderror) {
       // send the result here
       var result = {};
-      result = parseJavaCompilerOutput(stdout + stderror); // adding the compilation output
+
+      // Note: what we should do in parseJavaCompilerOutput is check the exit-code of the Java compiler
+      // But since we run a script to control timeouts etc. for the container, we don't have
+      // access to the exit-code of the compiler.
+      // What we do instead, we just check if there's something printed on stderr; because
+      // if the compiler generates an error, it would be printed to stderr; if compilation goes
+      // through, nothing will send to stderr
+      result = parseJavaCompilerOutput(stderror); // adding the compilation output
       result.id = id;
 
       var command = generateJavaJUnitCommand(dstPath, testsToRun, buildPath, compilationOutputFolder);
